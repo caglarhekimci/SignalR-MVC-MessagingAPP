@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "SendMessage";
+}
+<h2>Send Message</h2>
+<div class="container">
+    <form>
+        <input id="logmessage" type="text" />
+        <input id="btnsubmit" type="button" value="Send" />
+    </form>
+</div>
+
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#btnsubmit").click(function (e) {
+            var msgdata = $('#logmessage').val();
+            $.ajax({
+                type: "POST",
+                url: "Send",
+                dataType: "text",
+                data: msgdata,
+                success: function () {
+                    //alert(msgdata);
+                    $('#logmessage').val('').focus();
+                }
+            });
+        });
+    });
+</script>
